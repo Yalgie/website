@@ -1,0 +1,564 @@
+.screenGrid {
+	position: absolute;
+	height: 100%;
+	width: 100%; 
+	top: 0px;
+	left: 0px;
+	background: url(../img/screenGrid.png) repeat;
+	z-index: 3;
+	pointer-events: none;
+	display: none;
+}
+
+.desktop {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 2;
+	padding: 35px;
+    transform: scale(1.5);
+    transition: all 1.0s ease;
+    pointer-events: none;
+    display: none;
+
+    @media (max-width: $resize) {
+		padding: 15px;
+	}
+   	
+   	.noise {
+   		position: absolute;
+		height: calc(100% - 70px);
+		width: calc(100% - 70px); 
+		top: 35px;
+		left: 35px;
+		opacity: 0.015;
+		display: none;
+		background-image: url(../img/noise.gif);
+		z-index: 5;
+		pointer-events: none;
+   	}
+
+    .monitor-edges {
+    	-webkit-filter: brightness(90%) contrast(90%) blur(2px) grayscale(10%);
+  		filter: brightness(90%) contrast(90%) blur(2px) grayscale(10%);  
+  		pointer-events: none;
+  		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		z-index: 3;
+		border: 35px $matte solid;
+
+		@media (max-width: $resize) {
+			border: 15px $matte solid;
+		}
+    }
+
+    &.zoom {
+    	transform: scale(1);
+    	pointer-events: all;
+    	-moz-box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, .5);
+	    -webkit-box-shadow: inset 0px 1000px 0px rgba(0, 0, 0, .5);
+	    box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, .5);
+    }
+
+	.apps {
+		display: none;
+		position: absolute;
+		height: calc(100% - 70px);
+		width: calc(50% - 70px); 
+		top: 35px;
+		left: 35px;
+
+		@media (max-width: $resize) {
+			height: calc(100% - 30px);
+			width: calc(50% - 30px); 
+			top: 15px;
+			left: 15px;
+		}
+
+		&.social {
+			left: auto;
+			right: 35px;
+			margin-right: 15px;
+
+			.app-icon {
+				float: right;
+			}
+
+			@media (max-width: $resize) {
+				right: 15px;
+			}
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		.app-icon {
+			// width: 81px;
+			display: inline-block;
+
+			i {
+				width: 50px;
+				height: 50px;
+				float: none;
+				clear: both;
+				display: block;
+				margin: 15px;
+				margin-right: 0px;
+				border-radius: 4px;
+				color: rgba(255, 255, 255, 0.5);
+				background-color: rgba(255, 255, 255, 0.1);
+				transition: background-color 0.5s ease, color 0.5s ease;
+				cursor: pointer;
+				@include flex();
+
+				&:hover{
+					color: $green;
+				}
+			}
+
+			span {
+				font-size: 0.7rem;
+				display: block;
+				text-align: center;
+				margin-top: -10px;
+				font-weight: bold;
+				color: #F1F1F1;
+				width: 60px;
+				margin-left: 10px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				margin-bottom: -5px;
+			}
+
+			@media (max-height: $minHeight) {
+				i {
+					font-size: 1.5rem;
+					width: 35px;
+					height: 35px;
+				}
+
+				span {
+					width: 40px;
+				}
+			}
+
+			&.awards {
+				position: absolute;
+				top: 0px;
+				left: 65px;
+			}
+		}
+	}
+
+	.info {
+		display: none;
+		position: absolute;
+		right: 50px;
+		bottom: 50px;
+		text-align: right;
+		color: #F1F1F1;
+		height: 50px;
+		font-size: 0.75rem;
+		background-color: rgba(255, 255, 255, 0.1);
+		border-radius: 4px;
+		padding: 30px 15px;
+		@include flex();
+
+		@media (max-height: $minHeight) {
+			padding: 15px 5px;
+		}
+
+		@media (max-width: $resize) {
+			right: 30px;
+			bottom: 30px;
+		}
+
+		.time {
+			margin-bottom: 5px;
+
+		}
+
+		.info-icon {
+			margin-left: 10px;
+			transition: color 0.5s ease;
+			color: #F1F1F1;
+			padding: 6px;
+			border-radius: 4px;
+			background-color: rgba(255, 255, 255, 0.1);
+			cursor: pointer;
+
+			&.shutdown:hover {
+				color: $red;
+			}
+
+			&.fa-calculator:hover {
+				color: $green;
+			}
+		}
+	}
+
+	.explorer-window {
+		position: absolute;
+		top: 50px;
+		left: 50px;
+		width: 70%;
+		height: 55%;
+		transform: scale(0.8);
+		transition: transform 0.5s ease;
+		outline: none;
+		display: none;
+		z-index: 1;
+
+		@media (max-width: $resize) {
+			top: 15px;
+			left: 15px;
+			width: calc(100% - 30px);
+			height: calc(100% - 30px);
+		}
+
+		&:focus {
+			z-index: 99;
+		}
+
+		&.spotify-explorer {
+			width: 301px;
+			height: 410px;
+		}
+
+		.window-header {
+			height: 31px;
+			background-color: #3a3a3a;
+			width: 100%;
+			color: #FFF;
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+			cursor: move;
+
+			.window-title {
+				color: #FFF;
+				float: left;
+				padding: 8px 10px;
+				text-transform: uppercase;
+				font-size: 0.7rem;
+				font-weight: bold;
+			}
+
+			.button-wrap {
+				height: 31px;
+				float: right;
+				@include flex;
+				padding: 0px 15px;
+				transition: background-color 0.5s ease;
+
+				i {
+					transition: color 0.5s ease;
+				}
+
+				&:hover {
+					background-color: rgba(0, 0, 0, 0.25);
+					cursor: pointer;
+
+					.fa-times {
+						color: $red;
+					}
+
+					.fa-minus {
+						color: #1ED760;
+					}
+
+					.fa-window-maximize {
+						color: #1ED760;
+					}
+				}
+			}
+		}
+
+		.window-body {
+			width: 100%;
+			height: calc(100% - 30px);
+			background-color: rgba(0,0,0,1);
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
+			padding-left: 5px;
+			border: 1px solid $matte;
+			border-top: 0px;
+
+			&.block-override {
+				display: block !important;
+			}
+
+			&.trash-body {
+				.explorer-icon,
+				.explorer-icon i {
+					cursor: not-allowed;
+				}
+			}
+
+			&.spotify-body {
+				width: 300px;
+				height: 380px;
+				padding-left: 0px;
+
+				iframe {
+					width: 300px;
+					height: 380px;
+				}
+			}
+
+			&.about-body,
+			&.contact-body {
+				color: #F1F1F1;
+				padding: 15px !important;
+				@include flex();
+				flex-flow: column;
+   				text-align: center;
+   				overflow-x: hidden;
+   				overflow-y: auto;
+   				-webkit-overflow-scrolling: touch;
+
+   				.thanks {
+   					display: none;
+   				}
+
+   				form {
+   					max-width: 600px;
+   					@include flex();
+					flex-flow: column;
+					width: 100%;
+
+					input,
+					textarea {
+						width: 100%;
+					}
+
+					.honeypot {
+						display: none;
+					}
+
+					.to-from-field {
+						width: 100%;
+						margin-bottom: 15px;
+
+						&.error {
+							input {
+								border: 1px solid $red;
+								border-left: 0px;
+							}
+
+							span {
+								border: 1px solid $red;
+								border-right: 0px;
+							}
+						}
+
+						span {
+							width: 68px;
+							border-top-left-radius: 4px;
+							border-bottom-left-radius: 4px;
+							border-top-right-radius: 0px;
+							border-bottom-right-radius: 0px;
+							background-color: #DDD;
+						}
+						input {
+							background-color: #F1F1F1;
+							width: calc(100% - 68px);
+							border-top-right-radius: 4px;
+							border-bottom-right-radius: 4px;
+							border-top-left-radius: 0px;
+							border-bottom-left-radius: 0px;
+						}
+
+						span,
+						input {
+							float: left;
+							text-align: left;
+							padding: 5px;
+							border: 0px;
+							color: #333;
+							font-size: 1rem;
+						}
+					}
+
+					textarea {
+						background-color: #F1F1F1;
+						border-radius: 4px;
+						border: 0px;
+						padding: 5px;
+						color: #333;
+						font-size: 1rem;
+						resize: vertical;
+
+						&.error {
+							border: 1px solid $red;
+						}
+					}
+
+					.contact-submit {
+						padding: 10px 15px;
+						border-radius: 4px;
+						font-size: 1rem;
+						background-color: #F1F1F1;
+						color: #333;
+						margin-left: auto;
+						text-transform: uppercase !important;
+						font-weight: bold !important;
+						margin-top: 15px;
+						cursor: pointer;
+					}
+   				}
+
+				
+				* {
+					text-transform: none !important;
+					font-weight: normal !important;
+				}
+
+				p {
+					margin-bottom: 15px;
+
+					&:last-child {
+						margin-bottom: 0px;
+					}
+				}
+
+				a {
+					color: $green;
+					text-decoration: none;
+				}
+			}
+
+			&.work-body,
+			&.awards-body {
+				overflow-x: hidden;
+   				overflow-y: auto;
+   				-webkit-overflow-scrolling: touch;
+
+				.work-item,
+				.award-item {
+					float: left;
+					padding: 5px;
+					text-align: center;
+					background-color: #333;
+					margin: 15px;
+					border-radius: 4px;
+
+					.joe {
+						img {
+							padding: 25px;
+						}
+					}
+
+					img {
+						width: 100%;
+						height: auto;
+						border-radius: 4px;
+						background-color: #111;
+					}
+
+					.name {
+						width: 100%;
+						float: left;
+						color: #F1F1F1;
+						font-size: 0.9rem;
+						margin-top: 5px;
+
+						&.work-link-2 {
+							width: 50%;
+							float: left;
+						}
+					}
+
+					.language {
+						float: left;
+						padding: 2.5px;
+						margin: 2.5px;
+						font-size: 0.6rem;
+						text-align: center;
+						background-color: #222;
+						border-radius: 4px;
+						color: #F1F1F1;
+						margin-top: 10px;
+						margin-bottom: 0px;
+						font-weight: normal;
+
+						&.one {
+							width: calc(100%);
+						}
+
+						&.two {
+							width: calc(50% - 2.5px);
+						}
+
+						&.three {
+							width: calc(33.33% - 5px);
+						}
+
+						&:last-child {
+							margin-right: 0px;
+						}
+
+						&.no-left-margin {
+							margin-left: 0px;
+						}
+					}
+				}
+
+				.award-item {
+					img {
+						padding: 15px;
+					}
+
+					.name {
+						margin-bottom: 5px;
+					}
+				}
+			}
+
+			.explorer-icon {
+				width: 81px;
+				display: inline-block;
+				color: #F1F1F1;
+
+				i {
+					width: 50px;
+					height: 50px;
+					float: none;
+					clear: both;
+					display: block;
+					margin: 15px;
+					margin-right: 0px;
+					border-radius: 4px;
+					color: rgba(0, 0, 0, 0.5);
+					background-color: rgba(255, 255, 255, 0.5);
+					transition: background-color 0.5s ease;
+					cursor: pointer;
+					@include flex();
+				}
+
+				span {
+					font-size: 0.7rem;
+					display: block;
+					text-align: center;
+					margin-top: -15px;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+
+.ui-icon,
+.ui-widget-content .ui-icon {
+	background-image: url("../img/ui-icons_444444_256x240.png") !important;
+}
+.ui-widget-header .ui-icon {
+	background-image: url("../img/ui-icons_444444_256x240.png") !important;
+}

@@ -1,0 +1,28 @@
+div(class="explorer-window contact-explorer" tabindex="0")
+	div.window-header
+		p.window-title Contact
+
+		div.button-wrap.close-explorer
+			i.fa.fa-times
+
+	div.window-body.contact-body
+		//- p You can email me at <a href="mailto:daniel@thecodingforge.com.au">daniel@thecodingforge.com.au</a>
+		//- div.clearfix
+		//- div.explorer-icon.ie
+		//- 	i.fa.fa-internet-explorer.fa-2x
+
+
+		form
+			div.to-from-field
+				span To
+				input(type="text" value="dan@thecodingforge.com.au" readonly)
+			div.to-from-field
+				span From
+				input(type="text" id="email" name="email" placeholder="Enter your email here")
+			textarea(rows="5" id="message" name="message" placeholder="Enter your message here")
+			input(name="firstname" type="text" id="firstname" class="honeypot")
+			div.contact-submit Send <i class="fa fa-send"></i>
+
+		div.thanks
+			h1 Thanks :)
+			p I'll be in touch!

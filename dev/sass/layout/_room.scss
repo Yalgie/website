@@ -1,0 +1,239 @@
+.logo-overlay {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 9999;
+	background-color: rgba(0, 0, 0, 1);
+	pointer-events: none;
+}
+
+.tcf-logo {
+	position: fixed;
+	top: calc(50% - 69px);
+	left: calc(50% - 64.5px);
+	width: 129px;
+	height: 138px;
+	opacity: 1;
+	z-index: 99999;
+	transform: scale(1);
+	transition: all 1.5s ease;
+	pointer-events: none;
+
+	&.fade-out {
+		transform: scale(1.2);
+		opacity: 0;
+	}
+}
+
+.page-state {
+	position: fixed;
+	top: calc(50% + 100px);
+    left: calc(50% - 35px);
+	color: #F1F1F1;
+	z-index: 99999;
+
+    &.pulse {
+    	opacity: 0.2;
+    	animation: pulsate 0.8s ease-out;
+		-webkit-animation: pulsate 0.8s ease-out;
+	    -webkit-animation-iteration-count: infinite; 
+	    animation-iteration-count: infinite; 
+    }
+}
+
+@-webkit-keyframes pulsate {
+    0% { 
+        opacity: 0.2;
+    }
+    50% { 
+        opacity: 1.0;
+    }
+    100% { 
+        opacity: 0.2;
+    }
+}
+
+.room.ie {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	transform: scale(1);
+	transition: transform 1.0s ease;
+	z-index: 1;
+	outline: none;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	&.zoom-out {
+		transform: scale(0.95);
+		pointer-events: none;
+
+		.room-gif {
+			border-bottom: 0px;
+		}
+	}
+
+	.room-gif {
+		width: 100%;
+		height: auto;
+		margin: auto;
+		position: absolute;
+		top: 0; left: 0; bottom: 0; right: 0;
+		outline: none;
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+		backface-visibility: hidden;
+		border-bottom: 0.1px solid $roomColor;
+		padding: 20%;
+
+		@media (max-width: $resize) {
+			padding: 10%;
+		}
+
+
+		&.overflow {
+			width: auto;
+			height: 100%;
+		}
+	}
+
+	.monitor-svg {
+		display: none;
+	}
+
+	.interactive-wrap {
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		position: absolute;
+		top: 0; left: 0; bottom: 0; right: 0;
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+		backface-visibility: hidden;
+
+		.monitor {
+			position: absolute;
+			cursor: pointer;
+			width: 13.4%;
+		    height: 12.1%;
+		    top: 39.5%;
+		    left: 13.3%;
+		    pointer-events: all;
+		    @include flex;
+
+		    i {
+		    	margin-bottom: 0px;
+		    	text-transform: uppercase;
+		    	font-weight: bold;
+		    	text-align: center;
+		    	color: #333;
+		    	padding: 5px 15px;
+		    	border-radius: 4px;
+		    	transition: all 0.5s ease;
+		    	transform-origin: center;
+		    	position: absolute;
+		    	top: 15px;
+		    	left: 0px;
+		    	animation: bounce 0.8s ease-out;
+				-webkit-animation: bounce 0.8s ease-out;
+			    -webkit-animation-iteration-count: infinite; 
+			    animation-iteration-count: infinite; 
+		    }
+
+		    @-webkit-keyframes bounce {
+			    0% { 
+			    	top: -40px;
+			    }
+			    50% { 
+			    	top: -50px;
+			    }
+			    100% { 
+			    	top: -40px;
+			    }
+			}
+
+		    &:hover {
+		    	p {
+		    		transform: perspective(1px) scale(1.05);
+		    	}
+		    }
+
+		    &.zoom {
+		    	background-color: rgba(11, 18, 13, 1);
+		    }
+		}
+	}
+}
+
+.room-gif {
+	image-rendering: pixelated;
+}
+.room:not(.ie) {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+	top: 0px;
+	left: 0px;
+
+	.room-gif,
+	.monitor-svg {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		position: absolute;
+		top: 0; left: 0; bottom: 0; right: 0;
+		padding: 5%;
+		-webkit-filter: blur(0px);
+    	filter: blur(0px);
+		transform: scale(1) translateZ(1px);
+		transition: all 1.0s ease;
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+		backface-visibility: hidden;
+		-webkit-transform:translateZ(1px); 
+    	transform:perspective(999px) translateZ(1px); 
+    	z-index: -1;
+
+    	text {
+    		font-size: 0.6rem;
+    		fill-opacity: 0.3;
+   	 		fill: #333;
+    	}
+	}
+
+	&.zoom-out {
+		.room-gif,
+		.monitor-svg {
+			-webkit-filter: blur(2px);
+			filter: blur(2px);
+			pointer-events: none;
+			-webkit-backface-visibility: hidden;
+			-moz-backface-visibility: hidden;
+			backface-visibility: hidden;
+			-webkit-transform:perspective(999px) scale(0.95) translateZ(1px); 
+			transform:perspective(999px) scale(0.95) translateZ(1px); 
+		}
+	}
+
+	.monitor-svg {
+		z-index: 0;
+	}
+
+	.interactive-wrap {
+		display: none;
+	}
+
+	.monitor {
+		cursor: pointer;
+
+		rect {
+			fill: transparent;	
+		}
+	}
+}

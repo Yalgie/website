@@ -1,0 +1,63 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	-webkit-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+	box-sizing: inherit;
+	// font-family: 'Open Sans', sans-serif;
+	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('webfont.eot'); /* IE9 Compat Modes */
+  src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+html {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	-webkit-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+	box-sizing: inherit;
+}
+
+body {
+	background-color: $roomColor;
+	overflow: hidden;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.tcf-btn {
+	width: 100%;
+	border: 0px;
+	padding: 30px 15px;
+	margin: 0 auto;
+	border-radius: 4px;
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	cursor: pointer;
+
+	&:hover {
+		@include buttonshadow;
+	}
+}
+
+.clearfix {
+	clear: both;
+	float: none;
+}

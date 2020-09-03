@@ -1,0 +1,69 @@
+div.screenGrid
+div.screenGrid
+div.screenGrid
+
+div.screen.desktop
+	div.noise
+	div.monitor-edges
+	div.apps
+		div.app-icon.work
+			i.fa.fa-folder.fa-2x
+			span Work
+
+		div.clearfix
+		div.app-icon.about
+			i.fa.fa-user-circle.fa-2x
+			span About
+
+		div.clearfix
+		div.app-icon.contact
+			a(href="mailto:dan@thecodingforge.com.au" target="_blank" rel="noopener")
+				i.fa.fa-envelope.fa-2x
+				span Contact
+
+		div.clearfix
+		div.app-icon.trash
+			i.fa.fa-trash.fa-2x
+			span Trash
+
+		div.clearfix
+		div.app-icon.awards
+			i.fa.fa-trophy.fa-2x
+			span Awards
+
+	div.apps.social
+		div.app-icon.social
+			a(href="https://codepen.io/Yalgie/" target="_blank" rel="noopener")
+				i.fa.fa-codepen.fa-2x
+				span Codepen
+
+		div.clearfix
+		div.app-icon.social
+			a(href="https://github.com/Yalgie" target="_blank" rel="noopener")
+				i.fa.fa-github.fa-2x
+				span Github
+
+		div.clearfix
+		div.app-icon.social
+			a(href="https://www.linkedin.com/in/dyalg/", target="_blank" rel="noopener")
+				i.fa.fa-linkedin.fa-2x
+				span LinkedIn
+
+		
+
+
+	include apps/trash.pug
+	include apps/about.pug
+	include apps/work.pug
+	include apps/contact.pug
+	include apps/awards.pug
+
+	//- div.menu
+	//- 	img(class="logo" src="img/tcf_white.svg" alt="Logo")
+
+	div.info
+		div
+			p.time 10:54pm
+			p.date 27/04/2017
+		//- i.fa.fa-calculator.fa-2x.info-icon
+		i.fa.fa-power-off.fa-2x.shutdown.info-icon
